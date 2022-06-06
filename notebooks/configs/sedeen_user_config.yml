@@ -1,0 +1,39 @@
+wholeslidedata:
+    default:
+        yaml_source: sedeen_data.yml
+        seed: 2
+
+        label_map:
+            ffff00ff: 0
+            00ff00ff: 1
+            000000ff: 2
+            00ffffff: 3
+
+        out_labels:
+            tils: 0
+            tumor: 1
+            calcification: 2
+            cell: 3
+
+        annotation_parser:
+            module: wholeslidedata.accessories.sedeen.parser
+            attribute: SedeenAnnotationParser
+            labels: ${wholeslidedata:labels}
+            renamed_labels: ${wholeslidedata:out_labels}
+
+        annotation_sources: 
+            filters: ['xml']
+            
+        batch_shape:
+            batch_size: 8
+            spacing: 0.5
+            shape: [256, 256, 3]
+            
+        label_sampler:
+            attribute: OrderedLabelSampler
+
+        annotation_sampler:
+            attribute: OrderedAnnotationSampler
+            
+        point_sampler:
+            attribute: UniformPointSampler

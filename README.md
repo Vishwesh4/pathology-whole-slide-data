@@ -110,7 +110,43 @@ with create_batch_iterator(mode='training',
     for x_batch, y_batch, batch_info in training_iterator:
         pass
 ```
+### Sedeen Parser
+Additionally a parser has been made to process sedeen annotated xml file. This parser enables easy utilization of different modules in the package to sedeen files. Please follow the tutorial given in the `notebooks/05-SedeenWholeSlideImage.ipynb` directory. For more information about pre-existing utilities, please refer to package documentation.
 
+For the logic of the sedeen parser, please refer to `wholeslidedata/accessories/sedeen/parser.py`
+
+For parsing sedeen anotations, please ensure the presence of the following lines in the config file, for the batch iterator
+```yaml
+# The label map should have the color code in hexadecimal without the "#" character
+label_map:
+    ffff00ff: 0
+    00ff00ff: 1
+    000000ff: 2
+    00ffffff: 3
+
+out_labels:
+    tils: 0
+    tumor: 1
+    calcification: 2
+    cell: 3
+# You must ensure that you select sedeen as the desired parser otherwise ASAP will be selected as the default parser
+annotation_parser:
+    module: wholeslidedata.accessories.sedeen.parser
+    attribute: SedeenAnnotationParser
+    labels: ${wholeslidedata:labels}
+    renamed_labels: ${wholeslidedata:out_labels}
+```
+And for WholeSlideAnnotation object
+```python
+wsa = WholeSlideAnnotation(
+      path_to_xml,
+      parser="sedeen",
+      labels=labels,
+      renamed_labels=renamed_labels)
+```
+
+### To Do
+- [ ] Parse annular annotations
 -----
 ## Examples and Video Tutorials
 - [Notebook examples](https://github.com/DIAGNijmegen/pathology-whole-slide-data/tree/main/notebooks)

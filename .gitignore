@@ -133,3 +133,8 @@ dmypy.json
 **/tests/notebooks
 .idea/
 *.tif
+
+**/images
+**/test_scripts
+**/.vscode
+

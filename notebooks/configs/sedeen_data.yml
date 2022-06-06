@@ -1,0 +1,6 @@
+training:
+    - wsi: 
+        path: /home/vishwesh/Projects/pathology-whole-slide-data/images/103732.svs
+      wsa: 
+        path: /home/vishwesh/Projects/pathology-whole-slide-data/images/sedeen/103732.session.xml
+               

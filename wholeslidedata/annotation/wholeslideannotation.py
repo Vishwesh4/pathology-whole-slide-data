@@ -33,6 +33,7 @@ class WholeSlideAnnotation:
         self,
         annotation_path: Union[Path, str],
         labels: Optional[Union[Labels, list, tuple, dict]] = None,
+        renamed_labels: Optional[Union[Labels, list, tuple, dict]] = None,
         parser: AnnotationParser = None,
         sort_by_overlay_index: bool = False,
         ignore_overlap: bool = True,
@@ -64,7 +65,7 @@ class WholeSlideAnnotation:
             ]
 
         self._annotation_parser: AnnotationParser = AnnotationParser.create(
-            parser, labels=labels
+            parser, labels=labels, renamed_labels=renamed_labels
         )
         self._annotations = self._annotation_parser.parse(annotation_path)
 
