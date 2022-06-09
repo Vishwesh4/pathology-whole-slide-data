@@ -4,16 +4,16 @@ wholeslidedata:
         seed: 2
 
         label_map:
-            ffff00ff: 0
-            00ff00ff: 1
-            000000ff: 2
-            00ffffff: 3
+            ffff00ff: 1 #yellow
+            00ff00ff: 2 #green
+            000000ff: 3 #black
+            00ffffff: 4 #blue
 
         out_labels:
-            tils: 0
-            tumor: 1
-            calcification: 2
-            cell: 3
+            tils: 1
+            tumor: 2
+            calcification: 3
+            cell: 4
 
         annotation_parser:
             module: wholeslidedata.accessories.sedeen.parser
@@ -35,5 +35,5 @@ wholeslidedata:
         annotation_sampler:
             attribute: OrderedAnnotationSampler
             
-        point_sampler:
-            attribute: UniformPointSampler
+        # point_sampler:
+        #     attribute: RandomPointSampler
